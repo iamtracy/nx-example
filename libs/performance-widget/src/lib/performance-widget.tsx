@@ -1,17 +1,16 @@
-import React, { Component, MouseEvent } from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
+import React, { Component } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Divider from '@material-ui/core/Divider';
 import './performance-widget.scss';
 import {
   CardContent,
   Typography,
   Button,
-  ButtonGroup,
-  withStyles
+  ButtonGroup
 } from '@material-ui/core';
 
 import { getPerformance } from '../../../api/src/index';
@@ -22,12 +21,13 @@ export interface PerformanceWidgetProps {
   title?: string;
 }
 
-const styles = theme => ({
-  formControl: {
-    marginBottom: theme.spacing(2),
-    width: 500
-  }
-});
+const divStyle = {
+  marginTop: 20
+};
+
+const dropdownStyle = {
+  minWidth: 120
+};
 
 export class PerformanceWidget extends Component<PerformanceWidgetProps> {
   state = { data: [], accountName: 'foo' };
@@ -41,7 +41,6 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
   }
 
   render() {
-    console.log(this.state, this.props);
     return (
       <Card>
         <CardContent>
@@ -59,9 +58,10 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
               </ButtonGroup>
             </Grid>
           </Grid>
+          <Divider />
+          <div style={divStyle}></div>
           <FormControl>
-            <InputLabel>Accounts</InputLabel>
-            <Select onChange={this.onSelect.bind(this)}>
+            <Select style={dropdownStyle} onChange={this.onSelect.bind(this)}>
               <MenuItem value={10}>Ten</MenuItem>
               <MenuItem value={20}>Twenty</MenuItem>
               <MenuItem value={30}>Thirty</MenuItem>
@@ -74,4 +74,4 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(PerformanceWidget);
+export default PerformanceWidget;
