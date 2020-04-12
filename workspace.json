@@ -19,9 +19,7 @@
               "apps/performance/src/favicon.ico",
               "apps/performance/src/assets"
             ],
-            "styles": [
-              "apps/performance/src/styles.scss"
-            ],
+            "styles": ["apps/performance/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -70,10 +68,7 @@
               "apps/performance/tsconfig.app.json",
               "apps/performance/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/performance/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/performance/**"]
           }
         },
         "test": {
@@ -109,13 +104,8 @@
           "options": {
             "linter": "eslint",
             "config": "apps/performance-e2e/.eslintrc",
-            "tsConfig": [
-              "apps/performance-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/performance-e2e/**"
-            ]
+            "tsConfig": ["apps/performance-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/performance-e2e/**"]
           }
         }
       }
@@ -135,9 +125,9 @@
               "libs/performance-widget/tsconfig.lib.json",
               "libs/performance-widget/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/performance-widget/**"
+            "exclude": ["**/node_modules/**", "!libs/performance-widget/**"],
+            "assets": [
+              "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             ]
           }
         },
@@ -202,13 +192,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/performance-widget-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/performance-widget-e2e/**"
-            ]
+            "tsConfig": ["apps/performance-widget-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/performance-widget-e2e/**"]
           }
         }
       }
