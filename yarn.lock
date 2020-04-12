@@ -1458,7 +1458,11 @@
     eslint-plugin-react "^7.18.3"
     eslint-plugin-react-hooks "^2.4.0"
 
+<<<<<<< HEAD
 "@nrwl/storybook@9.2.2":
+=======
+"@nrwl/storybook@^9.2.2":
+>>>>>>> install storybook as dev dep
   version "9.2.2"
   resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-9.2.2.tgz#06c84c1465b4b69e5b3c811a93095aa35fe99018"
   integrity sha512-APZjau0tK7gd2EtQNdcmRR2KCbGOFSxMWVoyhogaJ/B0bHmb4MDjW2msHYuKavluqRhHSKbZEMQlKHQ8Ybu1Cg==
