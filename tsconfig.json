@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@vestmark/performance-widget": ["libs/performance-widget/src/index.ts"]
+      "@vestmark/performance-widget": ["libs/performance-widget/src/index.ts"],
+      "@vestmark/api": ["libs/api/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

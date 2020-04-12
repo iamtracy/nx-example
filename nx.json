@@ -30,18 +30,17 @@
     },
     "performance-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "performance"
-      ]
+      "implicitDependencies": ["performance"]
     },
     "performance-widget": {
       "tags": []
     },
     "performance-widget-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "performance-widget"
-      ]
+      "implicitDependencies": ["performance-widget"]
+    },
+    "api": {
+      "tags": ["data-access"]
     }
   }
 }
