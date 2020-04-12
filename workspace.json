@@ -19,7 +19,9 @@
               "apps/performance/src/favicon.ico",
               "apps/performance/src/assets"
             ],
-            "styles": ["apps/performance/src/styles.scss"],
+            "styles": [
+              "apps/performance/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -68,7 +70,10 @@
               "apps/performance/tsconfig.app.json",
               "apps/performance/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/performance/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/performance/**"
+            ]
           }
         },
         "test": {
@@ -104,8 +109,13 @@
           "options": {
             "linter": "eslint",
             "config": "apps/performance-e2e/.eslintrc",
-            "tsConfig": ["apps/performance-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/performance-e2e/**"]
+            "tsConfig": [
+              "apps/performance-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/performance-e2e/**"
+            ]
           }
         }
       }
@@ -125,7 +135,10 @@
               "libs/performance-widget/tsconfig.lib.json",
               "libs/performance-widget/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/performance-widget/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/performance-widget/**"
+            ]
           }
         },
         "test": {
@@ -134,6 +147,68 @@
             "jestConfig": "libs/performance-widget/jest.config.js",
             "tsConfig": "libs/performance-widget/tsconfig.spec.json",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/performance-widget/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/performance-widget",
+            "config": {
+              "configFolder": "libs/performance-widget/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "performance-widget-e2e": {
+      "root": "apps/performance-widget-e2e",
+      "sourceRoot": "apps/performance-widget-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/performance-widget-e2e/cypress.json",
+            "tsConfig": "apps/performance-widget-e2e/tsconfig.e2e.json",
+            "devServerTarget": "performance-widget:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "performance-widget:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/performance-widget-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/performance-widget-e2e/**"
+            ]
           }
         }
       }
