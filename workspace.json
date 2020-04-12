@@ -109,6 +109,34 @@
           }
         }
       }
+    },
+    "performance-widget": {
+      "root": "libs/performance-widget",
+      "sourceRoot": "libs/performance-widget/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/performance-widget/.eslintrc",
+            "tsConfig": [
+              "libs/performance-widget/tsconfig.lib.json",
+              "libs/performance-widget/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/performance-widget/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/performance-widget/jest.config.js",
+            "tsConfig": "libs/performance-widget/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
