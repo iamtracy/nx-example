@@ -1,28 +1,50 @@
 import React from 'react';
-import { text, number, boolean, object } from '@storybook/addon-knobs';
+import { array, object } from '@storybook/addon-knobs';
 
-import { PerformanceWidget } from './performance-widget';
+import { PerformanceChart } from './performance-chart';
 
-export default { title: 'PerformanceWidget' };
+export default { title: 'PerformanceChart' };
 
-export const badToken = () => (
-  <PerformanceWidget
-    config={object('config', {
-      apiKey: '123456789',
-      title: 'Performance Widget'
-    })}
-  />
+const fakeData = [
+  {
+    name: 'foo',
+    uv: Math.floor(Math.random() * 2000) + 1,
+    pv: Math.floor(Math.random() * 3800) + 1,
+    amt: Math.floor(Math.random() * 2500) + 1
+  },
+  {
+    name: 'bar',
+    uv: Math.floor(Math.random() * 2000) + 1,
+    pv: Math.floor(Math.random() * 3800) + 1,
+    amt: Math.floor(Math.random() * 2500) + 1
+  },
+  {
+    name: 'biz',
+    uv: Math.floor(Math.random() * 2000) + 1,
+    pv: Math.floor(Math.random() * 3800) + 1,
+    amt: Math.floor(Math.random() * 2500) + 1
+  },
+  {
+    name: 'baz',
+    uv: Math.floor(Math.random() * 2000) + 1,
+    pv: Math.floor(Math.random() * 3800) + 1,
+    amt: Math.floor(Math.random() * 2500) + 1
+  },
+  {
+    name: 'biz',
+    uv: Math.floor(Math.random() * 2000) + 1,
+    pv: Math.floor(Math.random() * 3800) + 1,
+    amt: Math.floor(Math.random() * 2500) + 1
+  },
+  {
+    name: 'baz',
+    uv: Math.floor(Math.random() * 2000) + 1,
+    pv: Math.floor(Math.random() * 3800) + 1,
+    amt: Math.floor(Math.random() * 2500) + 1
+  }
+];
+
+export const isEmpty = () => <PerformanceChart data={array('data', [])} />;
+export const hasData = () => (
+  <PerformanceChart data={object('data', fakeData)} />
 );
-// export const tokenExpiresSoon = () => <PerformanceWidget apiKey="123456789" />;
-// export const isLoading = () => <PerformanceWidget apiKey="123456789" />;
-// export const hasData = () => <PerformanceWidget apiKey="123456789" />;
-// export const noData = () => <PerformanceWidget apiKey="123456789" />;
-// export const noAccounts = () => <PerformanceWidget apiKey="123456789" />;
-
-export const asDynamicVariables = () => {
-  const name = text('Name', 'James');
-  const age = number('Age', 35);
-  const content = `I am ${name} and I'm ${age} years old.`;
-
-  return <div>{content}</div>;
-};

@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 import { Calendar } from 'react-date-range';
 import PerformanceChart from '../performance-chart/performance-chart';
-import { getPerformance, getAccounts } from 'libs/api/src/lib/performance-api';
+import { getPerformance, getAccounts } from './../../../../api/src/index';
 
 export interface PerformanceWidgetProps {
   config: {
@@ -40,7 +40,8 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
     accountName: 'foo',
     date: new Date(),
     focused: false,
-    isLoading: true
+    isLoading: true,
+    expirationDate: new Date()
   };
 
   componentDidMount() {
