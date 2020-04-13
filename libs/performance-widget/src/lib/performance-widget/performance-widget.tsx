@@ -15,8 +15,8 @@ import {
   CircularProgress
 } from '@material-ui/core';
 import { Calendar } from 'react-date-range';
-import { getPerformance, getAccounts } from '../../../api/src/index';
-import { PerformanceChart } from './performance-chart';
+import PerformanceChart from '../performance-chart/performance-chart';
+import { getPerformance, getAccounts } from 'libs/api/src/lib/performance-api';
 
 export interface PerformanceWidgetProps {
   config: {
