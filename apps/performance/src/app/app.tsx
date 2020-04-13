@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
 
 import { PerformanceWidget } from '@vestmark/performance-widget';
 
-interface PerformanceWidgetProps {
-  apiKey: string
-}
+const config = {
+  apiKey: '1234567',
+  styles: {
+    maxWidth: '1200px'
+  }
+};
 
-const PerformanceWidgetApp = (props: PerformanceWidgetProps) => {
-    return (<PerformanceWidget apiKey={props.apiKey}></PerformanceWidget>)
-}
-
+const PerformanceWidgetApp = props => {
+  return <PerformanceWidget config={config}></PerformanceWidget>;
+};
 
 export default PerformanceWidgetApp;
