@@ -16,7 +16,7 @@ export interface PerformanceChartProps {
   data: ReadonlyArray<any>;
 }
 
-export const PerformanceChart = (props: PerformanceChartProps) => {
+export const PerformanceChart: React.FunctionComponent<PerformanceChartProps> = props => {
   return (
     <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer>

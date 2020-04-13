@@ -125,10 +125,7 @@
               "libs/performance-widget/tsconfig.lib.json",
               "libs/performance-widget/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/performance-widget/**"],
-            "assets": [
-              "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/performance-widget/**"]
           }
         },
         "test": {

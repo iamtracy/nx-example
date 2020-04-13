@@ -13,4 +13,15 @@ async function getPerformance() {
     );
 }
 
-export { getPerformance };
+async function getAccounts() {
+  return await axios
+    .get('https://jsonplaceholder.typicode.com/posts')
+    .then(({ data }) =>
+      data.slice(0, 5).map(({ title, id }) => ({
+        name: title.split(' ')[1],
+        id
+      }))
+    );
+}
+
+export { getPerformance, getAccounts };

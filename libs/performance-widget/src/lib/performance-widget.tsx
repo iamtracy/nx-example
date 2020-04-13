@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
@@ -10,10 +11,11 @@ import {
   CardContent,
   Typography,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  CircularProgress
 } from '@material-ui/core';
-
-import { getPerformance } from '../../../api/src/index';
+import { Calendar } from 'react-date-range';
+import { getPerformance, getAccounts } from '../../../api/src/index';
 import { PerformanceChart } from './performance-chart';
 
 export interface PerformanceWidgetProps {
@@ -26,21 +28,36 @@ const divStyle = {
 };
 
 const dropdownStyle = {
-  minWidth: 120
+  minWidth: 140
 };
 
 export class PerformanceWidget extends Component<PerformanceWidgetProps> {
-  state = { data: [], accountName: 'foo' };
+  state = {
+    data: [],
+    accounts: [],
+    accountName: 'foo',
+    date: new Date(),
+    focused: false,
+    isLoading: true
+  };
 
   componentDidMount() {
-    getPerformance().then(data => this.setState({ data }));
+    getPerformance().then(data => this.setState({ data, isLoading: false }));
+    getAccounts().then(accounts => this.setState({ accounts }));
   }
 
   onSelect(event) {
     this.setState({ accountName: event.target.value });
   }
 
+  onDateChange() {}
+
+  onFocusChange() {}
+
+  handleSelect() {}
+
   render() {
+    if (this.state.isLoading) return <CircularProgress />;
     return (
       <Card>
         <CardContent>
@@ -60,13 +77,32 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
           </Grid>
           <Divider />
           <div style={divStyle}></div>
-          <FormControl>
-            <Select style={dropdownStyle} onChange={this.onSelect.bind(this)}>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
+          <Grid container justify="space-between">
+            <Grid item>
+              <FormControl style={dropdownStyle}>
+                <InputLabel>Account Name</InputLabel>
+                <Select onChange={this.onSelect.bind(this)}>
+                  (
+                  {this.state.accounts.map((account, i) => (
+                    <MenuItem value={account.id} key={i}>
+                      {account.name}
+                    </MenuItem>
+                  ))}
+                  )
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item>
+              <Calendar
+                id="date_input"
+                focused={this.state.focused}
+                onDateChange={this.onDateChange}
+                onFocusChange={this.onFocusChange}
+                date={this.state.date}
+                onChange={this.handleSelect}
+              />
+            </Grid>
+          </Grid>
           <PerformanceChart data={this.state.data}></PerformanceChart>
         </CardContent>
       </Card>
