@@ -19,8 +19,10 @@ import { getPerformance, getAccounts } from '../../../api/src/index';
 import { PerformanceChart } from './performance-chart';
 
 export interface PerformanceWidgetProps {
-  apiKey: string;
-  title?: string;
+  config: {
+    apiKey: string;
+    title?: string;
+  };
 }
 
 const divStyle = {
@@ -64,7 +66,8 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
           <Grid container justify="space-between">
             <Grid item>
               <Typography>
-                {this.props.title || 'Performance'} (key: {this.props.apiKey})
+                {this.props.config.title || 'Performance'} (key:{' '}
+                {this.props.config.apiKey})
               </Typography>
             </Grid>
             <Grid item>
