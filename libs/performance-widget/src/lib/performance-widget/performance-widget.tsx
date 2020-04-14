@@ -28,14 +28,17 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
     accounts: [],
     accountName: 'foo'
   };
-  searchObj = {};
-  styles = { ...this.props.config.styles, margin: '3rem auto 0' };
   defaultDateRangeValue = {
     start: moment()
       .subtract(30, 'days')
       .toDate(),
     end: moment().toDate()
   };
+  searchObj: any = {
+    dateRange: this.defaultDateRangeValue,
+    duration: 'week'
+  };
+  styles = { ...this.props.config.styles, margin: '3rem auto 0' };
 
   componentDidMount() {
     getPerformance({}).then(data => this.setState({ ...this.state, data }));
@@ -87,17 +90,18 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
                 </CardSubtitle>
               </Grid>
               <Grid item>
-                <ButtonGroup>
-                  <Button onClick={this.onButtonClickWeek.bind(this)}>
-                    Week
-                  </Button>
-                  <Button onClick={this.onButtonClickMonth.bind(this)}>
-                    Month
-                  </Button>
-                  <Button onClick={this.onButtonClickYear.bind(this)}>
-                    Year
-                  </Button>
-                </ButtonGroup>
+                <Button look="flat" onClick={this.onButtonClickWeek.bind(this)}>
+                  Week
+                </Button>
+                <Button
+                  look="flat"
+                  onClick={this.onButtonClickMonth.bind(this)}
+                >
+                  Month
+                </Button>
+                <Button look="flat" onClick={this.onButtonClickYear.bind(this)}>
+                  Year
+                </Button>
               </Grid>
             </Grid>
             <div style={divStyle}></div>
