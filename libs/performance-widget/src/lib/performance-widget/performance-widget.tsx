@@ -1,8 +1,8 @@
-import React, { Component, SyntheticEvent } from 'react';
+import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import './performance-widget.scss';
 import { CardContent } from '@material-ui/core';
-import { ButtonGroup, Button } from '@progress/kendo-react-buttons';
+import { Button } from '@progress/kendo-react-buttons';
 import { DateRangePicker } from '@progress/kendo-react-dateinputs';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { Card, CardSubtitle } from '@progress/kendo-react-layout';
