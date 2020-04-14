@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-async function getPerformance() {
+async function getPerformance(performance) {
+  console.log(performance);
   return await axios
     .get('https://jsonplaceholder.typicode.com/posts')
     .then(({ data }) =>
@@ -16,9 +17,13 @@ async function getPerformance() {
 async function getAccounts() {
   return await axios
     .get('https://jsonplaceholder.typicode.com/posts')
-    .then(({ data }) =>
-      data.slice(0, 5).map(({ title }) => title.split(' ')[1])
-    );
+    .then(({ data }) => [
+      { name: 'Charles Schwab', id: 1 },
+      { name: 'TD Ameritrade', id: 2 },
+      { name: 'Wintrust', id: 3 },
+      { name: 'Edward Jones', id: 4 },
+      { name: 'JPMorgan Chase', id: 5 }
+    ]);
 }
 
 export { getPerformance, getAccounts };

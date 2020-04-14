@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import Grid from '@material-ui/core/Grid';
 import './performance-widget.scss';
 import { CardContent } from '@material-ui/core';
@@ -7,6 +7,7 @@ import { DateRangePicker } from '@progress/kendo-react-dateinputs';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { Card, CardSubtitle } from '@progress/kendo-react-layout';
 import PerformanceChart from '../performance-chart/performance-chart';
+import moment from 'moment';
 import { getPerformance, getAccounts } from './../../../../api/src/index';
 
 export interface PerformanceWidgetProps {
@@ -25,20 +26,53 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
   state = {
     data: [],
     accounts: [],
-    accountName: 'foo',
-    date: new Date(),
-    focused: false,
-    expirationDate: new Date()
+    accountName: 'foo'
   };
+  searchObj = {};
   styles = { ...this.props.config.styles, margin: '3rem auto 0' };
+  defaultDateRangeValue = {
+    start: moment()
+      .subtract(30, 'days')
+      .toDate(),
+    end: moment().toDate()
+  };
 
   componentDidMount() {
-    getPerformance().then(data => this.setState({ data }));
-    getAccounts().then(accounts => this.setState({ accounts }));
+    getPerformance({}).then(data => this.setState({ ...this.state, data }));
+    getAccounts().then(accounts => this.setState({ ...this.state, accounts }));
   }
 
-  onChange() {
-    getPerformance().then(data => this.setState({ ...this.state.data, data }));
+  onDateChange(event) {
+    this.searchObj = { ...this.searchObj, dateRange: event.value };
+    if (!!event.value.start && !!event.value.end) {
+      this.search();
+    }
+  }
+
+  onAccountChange(event) {
+    this.searchObj = { ...this.searchObj, accountId: event.value.id };
+    this.search();
+  }
+
+  onButtonClickWeek() {
+    this.searchObj = { ...this.searchObj, duration: 'week' };
+    this.search();
+  }
+
+  onButtonClickMonth() {
+    this.searchObj = { ...this.searchObj, duration: 'month' };
+    this.search();
+  }
+
+  onButtonClickYear() {
+    this.searchObj = { ...this.searchObj, duration: 'year' };
+    this.search();
+  }
+
+  private search() {
+    getPerformance(this.searchObj).then(data =>
+      this.setState({ ...this.state, data })
+    );
   }
 
   render() {
@@ -54,9 +88,15 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
               </Grid>
               <Grid item>
                 <ButtonGroup>
-                  <Button onClick={this.onChange.bind(this)}>Week</Button>
-                  <Button onClick={this.onChange.bind(this)}>Month</Button>
-                  <Button onClick={this.onChange.bind(this)}>Year</Button>
+                  <Button onClick={this.onButtonClickWeek.bind(this)}>
+                    Week
+                  </Button>
+                  <Button onClick={this.onButtonClickMonth.bind(this)}>
+                    Month
+                  </Button>
+                  <Button onClick={this.onButtonClickYear.bind(this)}>
+                    Year
+                  </Button>
                 </ButtonGroup>
               </Grid>
             </Grid>
@@ -65,11 +105,17 @@ export class PerformanceWidget extends Component<PerformanceWidgetProps> {
               <Grid item>
                 <DropDownList
                   data={this.state.accounts}
-                  onChange={this.onChange.bind(this)}
+                  onChange={this.onAccountChange.bind(this)}
+                  textField="name"
+                  dataItemKey="id"
+                  name="date"
                 />
               </Grid>
               <Grid item>
-                <DateRangePicker onChange={this.onChange.bind(this)} />
+                <DateRangePicker
+                  defaultValue={this.defaultDateRangeValue}
+                  onChange={this.onDateChange.bind(this)}
+                />
               </Grid>
             </Grid>
             <PerformanceChart data={this.state.data}></PerformanceChart>
