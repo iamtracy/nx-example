@@ -3,9 +3,9 @@ import { render } from '@testing-library/react';
 
 import PerformanceWidget from './performance-widget';
 
-describe(' PerformanceWidget', () => {
+describe('PerformanceWidget', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<PerformanceWidget />);
+    const { baseElement } = render(<PerformanceWidget apiKey="123456789" />);
     expect(baseElement).toBeTruthy();
   });
 });

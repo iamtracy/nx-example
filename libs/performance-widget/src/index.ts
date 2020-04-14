@@ -1,1 +1,1 @@
-export * from './lib/performance-widget';
+export * from './lib/performance-widget/performance-widget';

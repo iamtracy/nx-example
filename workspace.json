@@ -19,9 +19,7 @@
               "apps/performance/src/favicon.ico",
               "apps/performance/src/assets"
             ],
-            "styles": [
-              "apps/performance/src/styles.scss"
-            ],
+            "styles": ["apps/performance/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -70,10 +68,7 @@
               "apps/performance/tsconfig.app.json",
               "apps/performance/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/performance/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/performance/**"]
           }
         },
         "test": {
@@ -109,13 +104,8 @@
           "options": {
             "linter": "eslint",
             "config": "apps/performance-e2e/.eslintrc",
-            "tsConfig": [
-              "apps/performance-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/performance-e2e/**"
-            ]
+            "tsConfig": ["apps/performance-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/performance-e2e/**"]
           }
         }
       }
@@ -135,10 +125,7 @@
               "libs/performance-widget/tsconfig.lib.json",
               "libs/performance-widget/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/performance-widget/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/performance-widget/**"]
           }
         },
         "test": {
@@ -202,13 +189,36 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "tsConfig": ["apps/performance-widget-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/performance-widget-e2e/**"]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "libs/api",
+      "sourceRoot": "libs/api/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/api/.eslintrc",
             "tsConfig": [
-              "apps/performance-widget-e2e/tsconfig.e2e.json"
+              "libs/api/tsconfig.lib.json",
+              "libs/api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/performance-widget-e2e/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/jest.config.js",
+            "tsConfig": "libs/api/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
