@@ -1,7 +1,7 @@
 import axios from 'axios';
+import { IPerfomanceApi } from './performance-api.model';
 
-async function getPerformance(performance) {
-  console.log(performance);
+async function getPerformance(performance): Promise<IPerfomanceApi> {
   return await axios
     .get('https://jsonplaceholder.typicode.com/posts')
     .then(({ data }) =>

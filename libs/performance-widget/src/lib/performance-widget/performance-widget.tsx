@@ -9,20 +9,13 @@ import { Card, CardSubtitle } from '@progress/kendo-react-layout';
 import PerformanceChart from '../performance-chart/performance-chart';
 import moment from 'moment';
 import { getPerformance, getAccounts } from './../../../../api/src/index';
-
-export interface PerformanceWidgetProps {
-  config: {
-    apiKey: string;
-    title?: string;
-    styles?: Object;
-  };
-}
+import { IPerformanceWidgetProps } from '../models/performance-api.model';
 
 const divStyle = {
   marginTop: 20
 };
 
-export class PerformanceWidget extends Component<PerformanceWidgetProps> {
+export class PerformanceWidget extends Component<IPerformanceWidgetProps> {
   state = {
     data: [],
     accounts: [],

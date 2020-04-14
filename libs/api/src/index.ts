@@ -1,1 +1,1 @@
-export * from './lib/performance-api';
+export * from './lib/performance-api/performance-api';
