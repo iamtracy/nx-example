@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import './performance-widget.scss';
-import { CardContent } from '@material-ui/core';
-import { Button } from '@progress/kendo-react-buttons';
+import { CardContent, Button } from '@material-ui/core';
 import { DateRangePicker } from '@progress/kendo-react-dateinputs';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { Card, CardSubtitle } from '@progress/kendo-react-layout';
@@ -12,30 +11,30 @@ import { getPerformance, getAccounts } from './../../../../api/src/index';
 import { IPerformanceWidgetProps } from '../models/performance-api.model';
 
 const divStyle = {
-  marginTop: 20
+  marginTop: 20,
 };
 
 export class PerformanceWidget extends Component<IPerformanceWidgetProps> {
   state = {
     data: [],
     accounts: [],
-    accountName: 'foo'
+    accountName: 'foo',
   };
   defaultDateRangeValue = {
-    start: moment()
-      .subtract(30, 'days')
-      .toDate(),
-    end: moment().toDate()
+    start: moment().subtract(30, 'days').toDate(),
+    end: moment().toDate(),
   };
   searchObj: any = {
     dateRange: this.defaultDateRangeValue,
-    duration: 'week'
+    duration: 'week',
   };
   styles = { ...this.props.config.styles, margin: '3rem auto 0' };
 
   componentDidMount() {
-    getPerformance({}).then(data => this.setState({ ...this.state, data }));
-    getAccounts().then(accounts => this.setState({ ...this.state, accounts }));
+    getPerformance({}).then((data) => this.setState({ ...this.state, data }));
+    getAccounts().then((accounts) =>
+      this.setState({ ...this.state, accounts })
+    );
   }
 
   onDateChange(event) {
@@ -66,7 +65,7 @@ export class PerformanceWidget extends Component<IPerformanceWidgetProps> {
   }
 
   private search() {
-    getPerformance(this.searchObj).then(data =>
+    getPerformance(this.searchObj).then((data) =>
       this.setState({ ...this.state, data })
     );
   }
@@ -83,16 +82,13 @@ export class PerformanceWidget extends Component<IPerformanceWidgetProps> {
                 </CardSubtitle>
               </Grid>
               <Grid item>
-                <Button look="flat" onClick={this.onButtonClickWeek.bind(this)}>
+                <Button onClick={this.onButtonClickWeek.bind(this)}>
                   Week
                 </Button>
-                <Button
-                  look="flat"
-                  onClick={this.onButtonClickMonth.bind(this)}
-                >
+                <Button onClick={this.onButtonClickMonth.bind(this)}>
                   Month
                 </Button>
-                <Button look="flat" onClick={this.onButtonClickYear.bind(this)}>
+                <Button onClick={this.onButtonClickYear.bind(this)}>
                   Year
                 </Button>
               </Grid>

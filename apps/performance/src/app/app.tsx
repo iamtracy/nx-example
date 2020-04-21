@@ -5,11 +5,11 @@ import { PerformanceWidget } from '@vestmark/performance-widget';
 const config = {
   apiKey: '1234567',
   styles: {
-    maxWidth: '1200px'
-  }
+    maxWidth: '1200px',
+  },
 };
 
-const PerformanceWidgetApp = props => {
+const PerformanceWidgetApp = (props) => {
   return <PerformanceWidget config={config}></PerformanceWidget>;
 };
 
