@@ -6,7 +6,7 @@ export interface IPerfomanceApi {
         {
           trackingError: Object | null;
           endDate: string;
-          grossRateOfReturn: number;
+          grossRateOfReturn: number | null;
           netRateOfReturn: number;
           dollarWeightedRateOfReturn: number;
           beta: Object | null;
@@ -31,4 +31,10 @@ export interface IPerfomanceApi {
       ];
     };
   };
+}
+
+export interface IAccountApi {
+  id: string;
+  name: string;
+  description: string;
 }

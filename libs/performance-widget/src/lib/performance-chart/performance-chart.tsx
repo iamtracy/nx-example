@@ -6,7 +6,7 @@ import {
   Tooltip,
   CartesianGrid,
   Line,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from 'recharts';
 
 import './performance-chart.scss';
@@ -16,7 +16,9 @@ export interface PerformanceChartProps {
   data: ReadonlyArray<any>;
 }
 
-export const PerformanceChart: React.FunctionComponent<PerformanceChartProps> = props => {
+export const PerformanceChart: React.FunctionComponent<PerformanceChartProps> = (
+  props
+) => {
   return (
     <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer>
@@ -24,11 +26,11 @@ export const PerformanceChart: React.FunctionComponent<PerformanceChartProps> = 
           width={600}
           height={300}
           data={props.data}
-          margin={{ top: 40, right: 20, bottom: 5, left: 0 }}
+          margin={{ top: 40, right: 0, bottom: 5, left: 0 }}
         >
-          <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+          <Line type="monotone" dataKey="grossRateOfReturn" stroke="#8884d8" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="endDate" />
           <YAxis />
           <Tooltip />
         </LineChart>

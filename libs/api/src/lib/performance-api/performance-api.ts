@@ -1,40 +1,45 @@
 import axios from 'axios';
-import { IPerfomanceApi } from './performance-api.model';
+import moment from 'moment';
+import { IPerfomanceApi, IAccountApi } from './performance-api.model';
+
+// const domain = 'http://jrahman02:8080';
+const domain = 'http://tbradley01:8080';
+const basicAuth = {
+  username: 'sysadmin',
+  password: 'sysAdmin123',
+};
 
 async function getPerformance(performance): Promise<IPerfomanceApi> {
+  const selectedAccountName = performance.account.name;
+  const startDate = moment(performance.startDate).format('YYYY-MM-DD');
+  const endDate = moment(performance.endDate).format('YYYY-MM-DD');
   return await axios
-    .get('https://jsonplaceholder.typicode.com/posts', {
-      data: performance,
-      auth: {
-        username: 'janedoe',
-        password: 's00pers3cret',
-      },
-    })
+    .get(
+      `${domain}/restapi/performance/timeseries/accounts/${performance.account.id}?startDate=${startDate}&endDate=${endDate}&segmentType=TOTAL_FUND&period=${performance.period}&fields=segments[name,results[endDate,grossRateOfReturn]]`,
+      {
+        auth: basicAuth,
+      }
+    )
     .then(({ data }) =>
-      data.slice(0, 10).map(({ title }) => ({
-        name: title.split(' ')[0],
-        uv: Math.floor(Math.random() * 2000) + 1,
-        pv: Math.floor(Math.random() * 3800) + 1,
-        amt: Math.floor(Math.random() * 2500) + 1,
-      }))
+      data.content.segments
+        .filter(({ name }) => name !== selectedAccountName)
+        .flatMap((account) => account.results)
+        .filter(({ grossRateOfReturn }) => grossRateOfReturn !== null)
+        .map((account) => ({
+          ...account,
+          uv: account.grossRateOfReturn,
+          pv: account.grossRateOfReturn,
+          amt: account.grossRateOfReturn,
+        }))
     );
 }
 
-async function getAccounts() {
+async function getAccounts(): Promise<Array<IAccountApi>> {
   return await axios
-    .get('https://jsonplaceholder.typicode.com/posts', {
-      auth: {
-        username: 'janedoe',
-        password: 's00pers3cret',
-      },
+    .get(`${domain}/restapi/accounts?size=100&fields=**`, {
+      auth: basicAuth,
     })
-    .then(({ data }) => [
-      { name: 'Charles Schwab', encodedAccountId: 1 },
-      { name: 'TD Ameritrade', encodedAccountId: 2 },
-      { name: 'Wintrust', encodedAccountId: 3 },
-      { name: 'Edward Jones', encodedAccountId: 4 },
-      { name: 'JPMorgan Chase', encodedAccountId: 5 },
-    ]);
+    .then(({ data }) => data.content);
 }
 
 export { getPerformance, getAccounts };

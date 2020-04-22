@@ -10,6 +10,7 @@
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
+            "deployUrl": "restapi/performance-demo/performance/",
             "outputPath": "dist/apps/performance",
             "index": "apps/performance/src/index.html",
             "main": "apps/performance/src/main.tsx",
