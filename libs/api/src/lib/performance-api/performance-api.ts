@@ -2,16 +2,6 @@ import axios from 'axios';
 import moment from 'moment';
 import { IPerformanceApi, IAccountApi } from './performance-api.model';
 
-const domain = 'http://tbradley02:8080';
-// const auth = {
-//   username: 'sysadmin',
-//   password: 'sysAdmin123',
-// };
-const auth = {
-  username: 'investor',
-  password: 'Investor123!',
-};
-
 async function getPerformance(performance): Promise<IPerformanceApi> {
   const startDate = moment(performance.startDate).format('YYYY-MM-DD');
   const endDate = moment(performance.endDate).format('YYYY-MM-DD');
