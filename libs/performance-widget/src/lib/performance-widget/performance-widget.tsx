@@ -49,19 +49,21 @@ export class PerformanceWidget extends Component<IPerformanceWidgetProps> {
   };
 
   onButtonClickDay = (data) => {
-    console.log(data);
     this.searchObj = { ...this.searchObj, period: 'DAY' };
     this.search();
   };
 
+  onButtonClickMonth = (data) => {
+    this.searchObj = { ...this.searchObj, period: 'MONTH' };
+    this.search();
+  };
+
   onButtonClickQuarter = (data) => {
-    console.log(data);
     this.searchObj = { ...this.searchObj, period: 'QUARTER' };
     this.search();
   };
 
   onButtonClickYear = (data) => {
-    console.log(data);
     this.searchObj = { ...this.searchObj, period: 'YEAR' };
     this.search();
   };
@@ -83,6 +85,7 @@ export class PerformanceWidget extends Component<IPerformanceWidgetProps> {
               </Grid>
               <Grid item>
                 <Button onClick={this.onButtonClickDay}>DAY</Button>
+                <Button onClick={this.onButtonClickMonth}>MONTH</Button>
                 <Button onClick={this.onButtonClickQuarter}>QUARTER</Button>
                 <Button onClick={this.onButtonClickYear}>YEAR</Button>
               </Grid>

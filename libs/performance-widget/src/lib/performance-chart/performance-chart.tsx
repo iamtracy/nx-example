@@ -28,7 +28,7 @@ export const PerformanceChart: React.FunctionComponent<PerformanceChartProps> = 
           data={props.data}
           margin={{ top: 40, right: 0, bottom: 5, left: 0 }}
         >
-          <Line type="monotone" dataKey="grossRateOfReturn" stroke="#8884d8" />
+          <Line type="monotone" dataKey="netRateOfReturn" stroke="#8884d8" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey="endDate" />
           <YAxis />

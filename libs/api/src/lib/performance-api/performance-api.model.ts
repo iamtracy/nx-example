@@ -1,4 +1,4 @@
-export interface IPerfomanceApi {
+export interface IPerformanceApi {
   content: {
     segments: {
       name: string;
