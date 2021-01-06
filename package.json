@@ -39,7 +39,7 @@
     "@progress/kendo-react-layout": "^3.12.0",
     "@progress/kendo-theme-material": "^3.14.0",
     "@storybook/addon-storyshots": "^5.3.18",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.12.0",
     "document-register-element": "1.13.1",
     "graphql": "^15.0.0",
